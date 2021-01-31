@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Employee;
 
 class EmployeesController extends Controller
 {
@@ -23,6 +25,20 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        return view('employees.index');
+        $employees = DB::table('employees')->paginate(1);
+
+        return view('employees.index', ['employees' => $employees]);
+    }
+
+
+    public function create()
+    {
+        return view('employees.create');
+    }
+
+
+    public function store(Request $request)
+    {
+        return $request->all();
     }
 }

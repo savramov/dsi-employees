@@ -15,6 +15,24 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @if(count($employees) > 0)
+                        <table width="100%" border="1">
+                            @foreach ($employees as $employee)
+                                <tr>
+                                    <td>{{ $employee->first_name }}</td>
+                                    <td>{{ $employee->last_name }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+
+                        {{ $employees->links() }}
+                    @else
+                        <p>No employees</p>
+                    @endif
+
+                    
+
                 </div>
             </div>
         </div>
