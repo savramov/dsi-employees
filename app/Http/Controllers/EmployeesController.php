@@ -39,6 +39,20 @@ class EmployeesController extends Controller
 
     public function store(Request $request)
     {
-        return $request->all();
+        // return $request->all();
+        
+        $validatedData = $request->validate([
+            'first_name' => 'required'
+        ]);
     }
+
+
+    public function destroy($id)
+    {
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+
+        return redirect('/employees')->with('success', 'Employee deleted successfully.');
+    }
+
 }

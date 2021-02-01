@@ -20,3 +20,4 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::get('/employees', 'EmployeesController@index')->name('employees');
 Route::get('/employees/create', 'EmployeesController@create')->name('employees.create');
 Route::post('/employees/store', 'EmployeesController@store')->name('employees.store');
+Route::delete('/employees/destroy/{id}', 'EmployeesController@destroy')->name('employees.destroy');

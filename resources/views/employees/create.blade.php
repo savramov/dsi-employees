@@ -9,16 +9,22 @@
         
         <div class="row">
             <div class="col-md-12">
-                <label>First Name:</label>
-                <input type="text" name="first_name" class="form-control" placeholder="First Name" />
-
-                <label>Last Name:</label>
-                <input type="text" name="last_name" class="form-control" placeholder="Last Name" />
-
-                <label>Phone:</label>
-                <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" />
-
-                <input type="submit" class="btn" value="Add Employee" />
+                <div class="form-group">
+                    <label>First Name:</label>
+                    <input type="text" name="first_name" class="form-control" placeholder="First Name" />
+                </div>
+                
+                <div class="form-group">
+                    <label>Last Name:</label>
+                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" />
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" />
+                </div>
+                
+                <input type="submit" class="btn btn-primary" value="Add Employee" />
             </div>
         </div>
     </form>

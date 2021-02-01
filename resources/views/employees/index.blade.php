@@ -22,6 +22,16 @@
                                 <tr>
                                     <td>{{ $employee->first_name }}</td>
                                     <td>{{ $employee->last_name }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="#">Edit</a>
+                                        
+                                        <form method="POST" action="{{ route('employees.destroy', $employee->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input class="btn btn-danger" type="submit" value="Delete" />
+                                        </form>
+
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
