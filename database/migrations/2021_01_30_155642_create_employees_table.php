@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('phone_number');
+            $table->string('phone_number')->nullable();
             $table->string('job_position');
             $table->decimal('salary', 10, 2);
             $table->timestamps();

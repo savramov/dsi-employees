@@ -25,7 +25,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = DB::table('employees')->paginate(1);
+        $employees = Employee::orderBy('id', 'DESC')->paginate(1);
 
         return view('employees.index', ['employees' => $employees]);
     }
@@ -42,8 +42,20 @@ class EmployeesController extends Controller
         // return $request->all();
         
         $validatedData = $request->validate([
-            'first_name' => 'required'
+            'first_name' => 'required',
+            'last_name'  => 'required',
+            'phone_number' => 'required'
         ]);
+
+        // Save New Employee to Database
+        $employee = new Employee([
+            'first_name' => $request->input('first_name'),
+            'last_name'  => $request->input('last_name')
+
+        ]);
+        $employee->save();
+
+        return redirect('/employees')->with('success', 'Employee added.');
     }
 
 
