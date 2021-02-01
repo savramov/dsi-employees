@@ -24,6 +24,15 @@
                     <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" />
                 </div>
                 
+                <div class="form-group">
+                    <label>Department:</label>
+                    <select class="form-control" name="deprartment_id">
+                        @foreach ($departments as $department)
+                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <input type="submit" class="btn btn-primary" value="Add Employee" />
             </div>
         </div>

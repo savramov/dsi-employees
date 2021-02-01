@@ -14,13 +14,19 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
+
+            $table->engine = 'InnoDB';
+
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone_number')->nullable();
             $table->string('job_position');
+            $table->unsignedBigInteger('department_id');
             $table->decimal('salary', 10, 2);
             $table->timestamps();
+
+            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

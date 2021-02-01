@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Employee;
+use App\Department;
 
 class EmployeesController extends Controller
 {
@@ -33,14 +34,14 @@ class EmployeesController extends Controller
 
     public function create()
     {
-        return view('employees.create');
+        $departments = Department::all();
+
+        return view('employees.create', ['departments' => $departments]);
     }
 
 
     public function store(Request $request)
-    {
-        // return $request->all();
-        
+    {           
         $validatedData = $request->validate([
             'first_name' => 'required',
             'last_name'  => 'required',
