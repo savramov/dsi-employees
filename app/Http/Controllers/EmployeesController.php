@@ -43,16 +43,20 @@ class EmployeesController extends Controller
     public function store(Request $request)
     {           
         $validatedData = $request->validate([
-            'first_name' => 'required',
-            'last_name'  => 'required',
+            'first_name'   => 'required',
+            'last_name'    => 'required',
+            'gender'       => 'required',
+            'email'        => 'required|email',
+            'address'      => 'required',
             'phone_number' => 'required'
         ]);
 
         // Save New Employee to Database
         $employee = new Employee([
             'first_name' => $request->input('first_name'),
-            'last_name'  => $request->input('last_name')
-
+            'last_name'  => $request->input('last_name'),
+            'gender'     => $request->input('gender'),
+            'email'      => $request->input('email')
         ]);
         $employee->save();
 

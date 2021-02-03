@@ -21,7 +21,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        @auth
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -71,12 +72,12 @@
                 </div>
             </div>
         </nav>
+        @endauth
 
+        
         <main class="py-4">
-            <div class="container">
-                @include('inc.messages')
-                @yield('content')
-            </div>
+            {{-- @include('inc.messages') --}}
+            @yield('content')
         </main>
     </div>
 </body>
