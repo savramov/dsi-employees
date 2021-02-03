@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
 
+
     <div class="card">
 
         <div class="card-header">
@@ -12,31 +13,31 @@
 
         <div class="card-body">
 
-            <form method="POST" action="{{ route('employees.store') }}">
+            <form method="POST" action="{{ route('employees.store') }}" id="employee_form">
                 @csrf
         
                 <div class="row">
 
                     <div class="col-md-6">
-                        <div class="form-group @error('first_name') is-invalid @enderror">
+                        <div class="form-group">
                             <label>{{ __('First Name:') }}</label>
-                            <input type="text" name="first_name" class="form-control" placeholder="{{ __('First Name') }}" />
+                            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" />
 
                             @error('first_name')
-                                <p class="text-danger">{{ $message }}</p>
+                                <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                     
                         <div class="form-group">
                             <label>{{ __('Gender:') }}</label>
-                            <select class="custom-select" name="gender">
+                            <select class="custom-select @error('first_name') is-invalid @enderror" name="gender">
                                 <option value="">{{ __('Please select your gender') }}</option>
                                 <option value="M">{{ __('Male') }}</option>
                                 <option value="F">{{ __('Female') }}</option>
                             </select>
 
                             @error('gender')
-                                <p class="text-danger">{{ $message }}</p>
+                                <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
                         
@@ -49,16 +50,17 @@
                             @enderror
                         </div>
                         
+                        
                         <div class="form-group">
                             <label>{{ __('Department:') }}</label>
-                            <select class="form-control custom-select" name="deprartment">
+                            <select class="form-control custom-select" name="department">
                                 <option value="">{{ __('Please select a department ...') }}</option>
                                 @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    <option value="{{ $department->id }}" {{ old('department') == $department->id ? "selected" : "" }}>{{ $department->name }}</option>
                                 @endforeach
                             </select>
 
-                            @error('deprartment')
+                            @error('department')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
@@ -66,6 +68,10 @@
                         <div class="form-group">
                             <label>{{ __('Salary:') }}</label>
                             <input type="text" name="salary" class="form-control" placeholder="{{ __('Salary') }}" />
+                            
+                            @error('salary')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -81,7 +87,7 @@
 
                         <div class="form-group">
                             <label>{{ __('Email:') }}</label>
-                            <input type="text" name="email" class="form-control" placeholder="{{ __('Email') }}" />
+                            <input type="text" name="email" class="form-control" placeholder="{{ __('Email') }}" value="{{ old('email') }}" />
 
                             @error('email')
                                 <p class="text-danger">{{ $message }}</p>
@@ -100,6 +106,10 @@
                         <div class="form-group">
                             <label>{{ __('Job Position:') }}</label>
                             <input type="text" name="job_position" class="form-control" placeholder="{{ __('Job Position') }}" />
+
+                            @error('job_position')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Department</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -28,6 +29,7 @@
                                 <tr class="table-active">
                                     <td>{{ $employee->first_name }}</td>
                                     <td>{{ $employee->last_name }}</td>
+                                    <td>{{ $employee->department->name }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-primary" href="#">Edit</a>

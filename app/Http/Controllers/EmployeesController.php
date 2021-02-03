@@ -20,7 +20,7 @@ class EmployeesController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the employees dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -41,14 +41,17 @@ class EmployeesController extends Controller
 
 
     public function store(Request $request)
-    {           
+    {
         $validatedData = $request->validate([
             'first_name'   => 'required',
             'last_name'    => 'required',
             'gender'       => 'required',
             'email'        => 'required|email',
             'address'      => 'required',
-            'phone_number' => 'required'
+            'phone_number' => 'required',
+            'department'   => 'required',
+            'job_position' => 'required',
+            'salary'       => 'required'
         ]);
 
         // Save New Employee to Database
@@ -56,11 +59,18 @@ class EmployeesController extends Controller
             'first_name' => $request->input('first_name'),
             'last_name'  => $request->input('last_name'),
             'gender'     => $request->input('gender'),
-            'email'      => $request->input('email')
+            'email'      => $request->input('email'),
+            'gender'     => $request->input('gender'),
+            'email'      => $request->input('email'),
+            'address'    => $request->input('address'),
+            'phone_number' => $request->input('phone_number'),
+            'department_id' => $request->input('department'),
+            'job_position' => $request->input('job_position'),
+            'salary' => $request->input('salary')
         ]);
         $employee->save();
 
-        return redirect('/employees')->with('success', 'Employee added.');
+        return redirect('/employees')->with('success', 'Employee added successfully.');
     }
 
 
