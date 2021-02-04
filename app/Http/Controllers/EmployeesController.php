@@ -50,8 +50,8 @@ class EmployeesController extends Controller
             'address'      => 'required',
             'phone_number' => 'required|digits:9',
             'department'   => 'required',
-            'job_position' => 'required',
-            'salary'       => 'required'
+            'job_position' => 'required|max:50',
+            'salary'       => 'required|numeric'
         ]);
 
         // Save New Employee to Database

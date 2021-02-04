@@ -1,7 +1,7 @@
-const { first } = require("lodash");
+const { first, add } = require("lodash");
 
 // Check if email is valid
-function emailIsValid (email) {
+function email_is_valid (email) {
     return /\S+@\S+\.\S+/.test(email)
 }
 
@@ -16,8 +16,8 @@ function add_error(element, message) {
     }
 }
 
-function clear_error(element) {
-    
+function remove_error(element) {
+    $(element).removeClass('is-invalid');
 }
 
 
@@ -29,7 +29,19 @@ $(document).ready(function() {
         var first_name_val = $(first_name).val();
         var last_name = 'input#last_name';
         var last_name_val = $(last_name).val();
-        var email = $('#email').val();
+        var gender = 'select#gender';
+        var gender_val = $(gender).val();
+        var email = 'input#email';
+        var email_val = $(email).val();
+        var address = 'input#address';
+        var address_val = $(address).val();
+        var phone = 'input#phone_number';
+        var phone_val = $(phone_number).val();
+        var department = 'select#department';
+        var department_val = $(department).val();
+        var job_position = 'input#job_position';
+        var job_position_val = $(job_position).val();
+
 
         var isFormValid = true;
 
@@ -46,7 +58,10 @@ $(document).ready(function() {
             add_error(first_name, 'The first name may not be greater than 30 characters.');
             isFormValid = false;
 
+        } else {
+            remove_error(first_name);
         }
+
 
         // Last Name Validation
         if(last_name_val.length < 1) {
@@ -61,7 +76,81 @@ $(document).ready(function() {
             add_error(last_name, 'The last name may not be greater than 30 characters.');
             isFormValid = false;
 
+        } else {
+            remove_error(last_name);
         }
+
+
+        // Gender Validation
+        if(gender_val === '') {
+            add_error(gender, 'The gender field is required.');
+            isFormValid = false;
+
+        } else {
+            remove_error(gender);
+        }
+
+
+        // Email Validation
+        if(email_val.length < 1) {
+            add_error(email, 'The email field is required.');
+            isFormValid = false;
+
+        } else if(!email_is_valid(email_val)) {
+            add_error(email, 'The email must be a valid email address.');
+            isFormValid = false;
+
+        } else {
+            remove_error(email);
+        }
+
+
+        // Address Validation
+        if(address_val.length < 1) {
+            add_error(address, 'The address field is required.');
+            isFormValid = false;
+
+        } else {
+            remove_error(address);
+        }
+
+
+        // Phone Number Validation
+        /*
+        if(phone.length < 1) {
+            add_error(phone_number, 'The phone field is required.');
+            console.log('no phone number entered ...');
+
+            // $(phone_number).addClass('is-invalid');
+            isFormValid = false;
+
+        }
+        */
+       
+        
+        // Department Validation
+        if(department_val === '') {
+            add_error(department, 'The department field is required.');
+            isFormValid = false;
+
+        } else {
+            remove_error(department);
+        }
+
+
+        // Job Position Validation
+        if(job_position_val.length < 1) {
+            add_error(job_position, 'The job position field is required.');
+            isFormValid = false;
+
+        } else if(job_position_val.length > 50) {
+            add_error(job_position, 'The job position may not be greater than 50 characters.');
+            isFormValid = false;
+
+        } else {
+            remove_error(job_position);
+        }
+
 
 
         // Submit the form, because it is valid
