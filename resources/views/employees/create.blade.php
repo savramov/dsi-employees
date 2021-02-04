@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{ __('First Name:') }}</label>
-                            <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" />
+                            <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" />
 
                             @error('first_name')
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
@@ -30,10 +30,10 @@
                     
                         <div class="form-group">
                             <label>{{ __('Gender:') }}</label>
-                            <select class="custom-select @error('first_name') is-invalid @enderror" name="gender">
+                            <select class="custom-select @error('gender') is-invalid @enderror" name="gender">
                                 <option value="">{{ __('Please select your gender') }}</option>
-                                <option value="M">{{ __('Male') }}</option>
-                                <option value="F">{{ __('Female') }}</option>
+                                <option value="M" {{ old('gender') == "M" ? "selected" : "" }}>{{ __('Male') }}</option>
+                                <option value="F" {{ old('gender') == "F" ? "selected" : "" }}>{{ __('Female') }}</option>
                             </select>
 
                             @error('gender')
@@ -78,7 +78,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{ __('Last Name:') }}</label>
-                            <input type="text" name="last_name" class="form-control" placeholder="Last Name" />
+                            <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" placeholder="Last Name" />
 
                             @error('last_name')
                                 <p class="text-danger">{{ $message }}</p>
@@ -96,7 +96,14 @@
 
                         <div class="form-group">
                             <label>{{ __('Phone:') }}</label>
-                            <input type="text" name="phone_number" class="form-control" placeholder="{{ __('Phone Number') }}" />
+                            <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">+359</span>
+                                    </div>
+                                    <input type="text" name="phone_number" class="form-control" placeholder="{{ __('Phone Number') }}" />
+                                </div>
+                            </div>
 
                             @error('phone_number')
                                 <p class="text-danger">{{ $message }}</p>
@@ -116,7 +123,7 @@
 
                 <div class="row">
                     <div class="col-md-12 text-center mt-5">
-                        <input type="submit" class="btn btn-primary btn-lg" value="Add Employee" />
+                        <input type="submit" class="btn btn-primary btn-lg" id="btn_submit" value="Add Employee" />
                     </div>
                 </div>
             </form>
