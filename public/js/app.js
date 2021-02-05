@@ -49889,15 +49889,15 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./resources/js/functions.js ***!
   \***********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
-    first = _require.first,
-    add = _require.add; // Check if email is valid
-
-
+// Check if email is valid
 function email_is_valid(email) {
   return /\S+@\S+\.\S+/.test(email);
+}
+
+function check_is_numeric(value) {
+  return /^[0-9]+$/.test(value);
 } // Add error message to the form
 
 
@@ -49934,6 +49934,8 @@ $(document).ready(function () {
     var department_val = $(department).val();
     var job_position = 'input#job_position';
     var job_position_val = $(job_position).val();
+    var salary = 'input#salary';
+    var salary_val = $(salary).val();
     var isFormValid = true; // First Name Validation
 
     if (first_name_val.length < 1) {
@@ -50017,6 +50019,17 @@ $(document).ready(function () {
       isFormValid = false;
     } else {
       remove_error(job_position);
+    } // Salary Validation
+
+
+    if (salary_val.length < 1) {
+      add_error(salary, 'The salary field is required.');
+      isFormValid = false;
+    } else if (!check_is_numeric(salary_val)) {
+      add_error(salary, 'The salary must be a number.');
+      isFormValid = false;
+    } else {
+      remove_error(salary);
     } // Submit the form, because it is valid
 
 

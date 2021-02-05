@@ -1,9 +1,12 @@
-const { first, add } = require("lodash");
-
 // Check if email is valid
 function email_is_valid (email) {
-    return /\S+@\S+\.\S+/.test(email)
+    return /\S+@\S+\.\S+/.test(email);
 }
+
+function check_is_numeric(value) {
+    return /^[0-9]+$/.test(value);
+}
+
 
 // Add error message to the form
 function add_error(element, message) {
@@ -41,6 +44,8 @@ $(document).ready(function() {
         var department_val = $(department).val();
         var job_position = 'input#job_position';
         var job_position_val = $(job_position).val();
+        var salary = 'input#salary';
+        var salary_val = $(salary).val();
 
 
         var isFormValid = true;
@@ -126,8 +131,8 @@ $(document).ready(function() {
 
         }
         */
-       
-        
+
+
         // Department Validation
         if(department_val === '') {
             add_error(department, 'The department field is required.');
@@ -149,6 +154,20 @@ $(document).ready(function() {
 
         } else {
             remove_error(job_position);
+        }
+
+
+        // Salary Validation
+        if(salary_val.length < 1) {
+            add_error(salary, 'The salary field is required.');
+            isFormValid = false;
+
+        } else if(!check_is_numeric(salary_val)) {
+            add_error(salary, 'The salary must be a number.');
+            isFormValid = false;
+
+        } else {
+            remove_error(salary);
         }
 
 
