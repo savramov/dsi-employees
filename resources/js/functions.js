@@ -121,16 +121,17 @@ $(document).ready(function() {
 
 
         // Phone Number Validation
-        /*
-        if(phone.length < 1) {
+        if(phone_val.length < 1) {
             add_error(phone_number, 'The phone field is required.');
-            console.log('no phone number entered ...');
-
-            // $(phone_number).addClass('is-invalid');
             isFormValid = false;
 
+        } else if(phone_val.length != 9) {
+            add_error(phone_number, 'The phone number must be 9 digits.');
+            isFormValid = false;
+
+        } else {
+            remove_error(phone_number);
         }
-        */
 
 
         // Department Validation

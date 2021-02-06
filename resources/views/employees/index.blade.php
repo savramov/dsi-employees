@@ -18,21 +18,25 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Department</th>
-                                    <th>Actions</th>
+                                    <th>{{ __('First Name') }}</th>
+                                    <th>{{ __('Last Name') }}</th>
+                                    <th>{{ __('Department') }}</th>
+                                    <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach ($employees as $employee)
-                                <tr class="table-active">
-                                    <td>{{ $employee->first_name }}</td>
-                                    <td>{{ $employee->last_name }}</td>
-                                    <td>{{ $employee->department->name }}</td>
-                                    <td>
+                                @if($loop->even)
+                                    <tr>
+                                @elseif($loop->odd)
+                                    <tr class="table-active">
+                                @endif
+                                    <td class="align-middle">{{ $employee->first_name }}</td>
+                                    <td class="align-middle">{{ $employee->last_name }}</td>
+                                    <td class="align-middle">{{ $employee->department->name }}</td>
+                                    <td class="align-middle">
                                         <div class="btn-group">
-                                            <a class="btn btn-primary" href="#">Edit</a>
+                                            <a class="btn btn-primary" href="{{ route('employees.edit', $employee->id) }}">Edit</a>
                                             
                                             <form method="POST" action="{{ route('employees.destroy', $employee->id) }}">
                                                 @csrf

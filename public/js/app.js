@@ -49992,15 +49992,16 @@ $(document).ready(function () {
       remove_error(address);
     } // Phone Number Validation
 
-    /*
-    if(phone.length < 1) {
-        add_error(phone_number, 'The phone field is required.');
-        console.log('no phone number entered ...');
-          // $(phone_number).addClass('is-invalid');
-        isFormValid = false;
-      }
-    */
-    // Department Validation
+
+    if (phone_val.length < 1) {
+      add_error(phone_number, 'The phone field is required.');
+      isFormValid = false;
+    } else if (phone_val.length != 9) {
+      add_error(phone_number, 'The phone number must be 9 digits.');
+      isFormValid = false;
+    } else {
+      remove_error(phone_number);
+    } // Department Validation
 
 
     if (department_val === '') {

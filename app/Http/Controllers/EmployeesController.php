@@ -26,7 +26,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = Employee::orderBy('id', 'DESC')->paginate(1);
+        $employees = Employee::orderBy('id', 'DESC')->paginate(10);
 
         return view('employees.index', ['employees' => $employees]);
     }
@@ -42,35 +42,52 @@ class EmployeesController extends Controller
 
     public function store(Request $request)
     {
+        // dd($_POST);
+
         $validatedData = $request->validate([
-            'first_name'   => 'required|min:3|max:30|alpha',
-            'last_name'    => 'required|min:3|max:30|alpha',
-            'gender'       => 'required|in:M,F',
-            'email'        => 'required|email',
-            'address'      => 'required',
-            'phone_number' => 'required|digits:9',
-            'department'   => 'required',
-            'job_position' => 'required|max:50',
-            'salary'       => 'required|numeric'
+            'first_name'    => 'required|min:3|max:30|alpha',
+            'last_name'     => 'required|min:3|max:30|alpha',
+            'gender'        => 'required',
+            'email'         => 'required|email',
+            'address'       => 'required',
+            'phone_number'  => 'required|digits:9',
+            'department'    => 'required',
+            'job_position'  => 'required|max:50',
+            'salary'        => 'required|numeric'
         ]);
+
 
         // Save New Employee to Database
         $employee = new Employee([
-            'first_name'    => $request->input('first_name'),
-            'last_name'     => $request->input('last_name'),
-            'gender'        => $request->input('gender'),
-            'email'         => $request->input('email'),
-            'gender'        => $request->input('gender'),
-            'email'         => $request->input('email'),
-            'address'       => $request->input('address'),
-            'phone_number'  => $request->input('phone_number'),
-            'department_id' => $request->input('department'),
-            'job_position'  => $request->input('job_position'),
-            'salary'        => $request->input('salary')
+            'first_name'    => $request->get('first_name'),
+            'last_name'     => $request->get('last_name'),
+            'gender'        => $request->get('gender'),
+            'email'         => $request->get('email'),
+            'address'       => $request->get('address'),
+            'phone_number'  => '+359'.$request->get('phone_number'),
+            'department_id' => $request->get('department'),
+            'job_position'  => $request->get('job_position'),
+            'salary'        => $request->get('salary')
         ]);
         $employee->save();
 
         return redirect('/employees')->with('success', 'Employee added successfully.');
+    }
+
+
+    public function edit($id)
+    {
+        $employee = Employee::findOrFail($id);
+        $departments = Department::all();
+
+        return view('employees.edit', ['employee' => $employee, 'departments' => $departments]);
+    }
+
+
+    public function update()
+    {
+        echo 'edit employee ...';
+        dd($_POST);
     }
 
 

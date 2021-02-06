@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::get('/employees', 'EmployeesController@index')->name('employees');
 Route::get('/employees/create', 'EmployeesController@create')->name('employees.create');
 Route::post('/employees/store', 'EmployeesController@store')->name('employees.store');
+Route::get('/employees/edit/{id}', 'EmployeesController@edit')->name('employees.edit');
+Route::patch('/employees/update/{id}', 'EmployeesController@update')->name('employees.update');
 Route::delete('/employees/destroy/{id}', 'EmployeesController@destroy')->name('employees.destroy');
