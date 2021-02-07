@@ -37,7 +37,7 @@
                                     <td class="align-middle">{{ $employee->job_position }}</td>
                                     <td class="align-middle">
                                         <div class="btn-group">
-                                            <a class="btn btn-primary" href="{{ route('employees.edit', $employee->id) }}">Edit</a>
+                                            <a class="btn btn-primary" href="{{ route('employees.edit', $employee->id) }}">{{ __('Edit') }}</a>
                                             
                                             <form method="POST" action="{{ route('employees.destroy', $employee->id) }}">
                                                 @csrf

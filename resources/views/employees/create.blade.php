@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label>{{ __('Gender:') }}</label>
                             <select class="custom-select @error('gender') is-invalid @enderror" name="gender" id="gender">
-                                <option value="">{{ __('Please select your gender') }}</option>
+                                <option value="">{{ __('Please select your gender ...') }}</option>
                                 <option value="M" {{ old('gender') == "M" ? "selected" : "" }}>{{ __('Male') }}</option>
                                 <option value="F" {{ old('gender') == "F" ? "selected" : "" }}>{{ __('Female') }}</option>
                             </select>

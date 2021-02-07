@@ -19,8 +19,9 @@ class EmployeesController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
-     * Show the employees dashboard.
+     * Show a listing of the employees.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -32,6 +33,11 @@ class EmployeesController extends Controller
     }
 
 
+    /**
+     * Show the form for creating a new employee.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function create()
     {
         $departments = Department::all();
@@ -40,6 +46,12 @@ class EmployeesController extends Controller
     }
 
 
+    /**
+     * Store a newly created employee in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -73,6 +85,12 @@ class EmployeesController extends Controller
     }
 
 
+    /**
+     * Show the form for editing of the employee.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function edit($id)
     {
         $employee = Employee::findOrFail($id);
@@ -82,13 +100,50 @@ class EmployeesController extends Controller
     }
 
 
-    public function update()
+    /**
+     * Update the employee in the database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        // echo 'edit employee ...';
-        // dd($_POST);
+        $validatedData = $request->validate([
+            'first_name'    => 'required|min:3|max:30|alpha',
+            'last_name'     => 'required|min:3|max:30|alpha',
+            'gender'        => 'required',
+            'email'         => 'required|email',
+            'address'       => 'required',
+            'phone_number'  => 'required|digits:9',
+            'department'    => 'required',
+            'job_position'  => 'required|max:50',
+            'salary'        => 'required|numeric'
+        ]);
+
+        // Update the Employee to Database
+        $employee = Employee::findOrFail($id);
+        $employee->first_name    = $request->get('first_name');
+        $employee->last_name     = $request->get('last_name');
+        $employee->gender        = $request->get('gender');
+        $employee->email         = $request->get('email');
+        $employee->address       = $request->get('address');
+        $employee->phone_number  = $request->get('phone_number');
+        $employee->department_id = $request->get('department');
+        $employee->job_position  = $request->get('job_position');
+        $employee->salary        = $request->get('salary');
+        $employee->save();
+
+        return redirect('/employees')->with('success', 'Employee edited successfully.');
     }
 
 
+    /**
+     * Remove the employee from the database.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $employee = Employee::findOrFail($id);
