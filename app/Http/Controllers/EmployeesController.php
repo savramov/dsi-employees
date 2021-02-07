@@ -84,8 +84,8 @@ class EmployeesController extends Controller
 
     public function update()
     {
-        echo 'edit employee ...';
-        dd($_POST);
+        // echo 'edit employee ...';
+        // dd($_POST);
     }
 
 

@@ -49894,14 +49894,15 @@ __webpack_require__.r(__webpack_exports__);
 // Check if email is valid
 function email_is_valid(email) {
   return /\S+@\S+\.\S+/.test(email);
-}
+} // Check if field is numeric
+
 
 function check_is_numeric(value) {
   return /^[0-9]+$/.test(value);
-} // Add error message to the form
+} // Show error message to the form
 
 
-function add_error(element, message) {
+function show_error_message(element, message) {
   $(element).addClass('is-invalid');
 
   if (!$(element).parent().find('span.invalid-feedback').length) {
@@ -49909,9 +49910,10 @@ function add_error(element, message) {
   } else {
     $(element).parent().find('span.invalid-feedback').html('<strong>' + message + '</strong>');
   }
-}
+} // Hide error message from the form
 
-function remove_error(element) {
+
+function hide_error_message(element) {
   $(element).removeClass('is-invalid');
 }
 
@@ -49939,98 +49941,98 @@ $(document).ready(function () {
     var isFormValid = true; // First Name Validation
 
     if (first_name_val.length < 1) {
-      add_error(first_name, 'Please enter first name.');
+      show_error_message(first_name, 'Please enter first name.');
       isFormValid = false;
     } else if (first_name_val.length < 3) {
-      add_error(first_name, 'The first name must be at least 3 characters.');
+      show_error_message(first_name, 'The first name must be at least 3 characters.');
       isFormValid = false;
     } else if (first_name_val.length > 30) {
-      add_error(first_name, 'The first name may not be greater than 30 characters.');
+      show_error_message(first_name, 'The first name may not be greater than 30 characters.');
       isFormValid = false;
     } else {
-      remove_error(first_name);
+      hide_error_message(first_name);
     } // Last Name Validation
 
 
     if (last_name_val.length < 1) {
-      add_error(last_name, 'Please enter last name.');
+      show_error_message(last_name, 'Please enter last name.');
       isFormValid = false;
     } else if (last_name_val.length < 3) {
-      add_error(last_name, 'The last name must be at least 3 characters.');
+      show_error_message(last_name, 'The last name must be at least 3 characters.');
       isFormValid = false;
     } else if (last_name_val.length > 30) {
-      add_error(last_name, 'The last name may not be greater than 30 characters.');
+      show_error_message(last_name, 'The last name may not be greater than 30 characters.');
       isFormValid = false;
     } else {
-      remove_error(last_name);
+      hide_error_message(last_name);
     } // Gender Validation
 
 
     if (gender_val === '') {
-      add_error(gender, 'The gender field is required.');
+      show_error_message(gender, 'The gender field is required.');
       isFormValid = false;
     } else {
-      remove_error(gender);
+      hide_error_message(gender);
     } // Email Validation
 
 
     if (email_val.length < 1) {
-      add_error(email, 'The email field is required.');
+      show_error_message(email, 'The email field is required.');
       isFormValid = false;
     } else if (!email_is_valid(email_val)) {
-      add_error(email, 'The email must be a valid email address.');
+      show_error_message(email, 'The email must be a valid email address.');
       isFormValid = false;
     } else {
-      remove_error(email);
+      hide_error_message(email);
     } // Address Validation
 
 
     if (address_val.length < 1) {
-      add_error(address, 'The address field is required.');
+      show_error_message(address, 'The address field is required.');
       isFormValid = false;
     } else {
-      remove_error(address);
+      hide_error_message(address);
     } // Phone Number Validation
 
 
     if (phone_val.length < 1) {
-      add_error(phone_number, 'The phone field is required.');
+      show_error_message(phone, 'The phone field is required.');
       isFormValid = false;
     } else if (phone_val.length != 9) {
-      add_error(phone_number, 'The phone number must be 9 digits.');
+      show_error_message(phone, 'The phone number must be 9 digits.');
       isFormValid = false;
     } else {
-      remove_error(phone_number);
+      hide_error_message(phone);
     } // Department Validation
 
 
     if (department_val === '') {
-      add_error(department, 'The department field is required.');
+      show_error_message(department, 'The department field is required.');
       isFormValid = false;
     } else {
-      remove_error(department);
+      hide_error_message(department);
     } // Job Position Validation
 
 
     if (job_position_val.length < 1) {
-      add_error(job_position, 'The job position field is required.');
+      show_error_message(job_position, 'The job position field is required.');
       isFormValid = false;
     } else if (job_position_val.length > 50) {
-      add_error(job_position, 'The job position may not be greater than 50 characters.');
+      show_error_message(job_position, 'The job position may not be greater than 50 characters.');
       isFormValid = false;
     } else {
-      remove_error(job_position);
+      hide_error_message(job_position);
     } // Salary Validation
 
 
     if (salary_val.length < 1) {
-      add_error(salary, 'The salary field is required.');
+      show_error_message(salary, 'The salary field is required.');
       isFormValid = false;
     } else if (!check_is_numeric(salary_val)) {
-      add_error(salary, 'The salary must be a number.');
+      show_error_message(salary, 'The salary must be a number.');
       isFormValid = false;
     } else {
-      remove_error(salary);
+      hide_error_message(salary);
     } // Submit the form, because it is valid
 
 
