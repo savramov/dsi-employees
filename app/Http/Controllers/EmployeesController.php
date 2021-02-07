@@ -42,8 +42,6 @@ class EmployeesController extends Controller
 
     public function store(Request $request)
     {
-        // dd($_POST);
-
         $validatedData = $request->validate([
             'first_name'    => 'required|min:3|max:30|alpha',
             'last_name'     => 'required|min:3|max:30|alpha',
@@ -64,7 +62,7 @@ class EmployeesController extends Controller
             'gender'        => $request->get('gender'),
             'email'         => $request->get('email'),
             'address'       => $request->get('address'),
-            'phone_number'  => '+359'.$request->get('phone_number'),
+            'phone_number'  => $request->get('phone_number'),
             'department_id' => $request->get('department'),
             'job_position'  => $request->get('job_position'),
             'salary'        => $request->get('salary')

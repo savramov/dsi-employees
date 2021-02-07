@@ -6,11 +6,10 @@
         <div class="col-md-12">
 
             <div class="card">
-            
-                <div class="card-header align-middle">
-                    <h4>{{ __('Employees') }}</h4>
-                    <a class="btn btn-primary" href="{{ route('employees.create') }}" role="button">{{ __('Add Employee') }}</a>
-                </div>        
+                <h4 class="card-header d-flex justify-content-between align-items-center p-4">
+                    {{ __('Employees') }}
+                    <a class="btn btn-primary" href="{{ route('employees.create') }}">{{ __('Add Employee') }}</a>
+                </h4>
 
                 <div class="card-body">
 
@@ -18,10 +17,11 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>{{ __('First Name') }}</th>
-                                    <th>{{ __('Last Name') }}</th>
-                                    <th>{{ __('Department') }}</th>
-                                    <th>{{ __('Actions') }}</th>
+                                    <th class="align-middle">{{ __('First Name') }}</th>
+                                    <th class="align-middle">{{ __('Last Name') }}</th>
+                                    <th class="align-middle">{{ __('Department') }}</th>
+                                    <th class="align-middle">{{ __('Job Position') }}</th>
+                                    <th class="align-middle">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,6 +34,7 @@
                                     <td class="align-middle">{{ $employee->first_name }}</td>
                                     <td class="align-middle">{{ $employee->last_name }}</td>
                                     <td class="align-middle">{{ $employee->department->name }}</td>
+                                    <td class="align-middle">{{ $employee->job_position }}</td>
                                     <td class="align-middle">
                                         <div class="btn-group">
                                             <a class="btn btn-primary" href="{{ route('employees.edit', $employee->id) }}">Edit</a>
@@ -41,7 +42,7 @@
                                             <form method="POST" action="{{ route('employees.destroy', $employee->id) }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input class="btn btn-danger" type="submit" value="Delete" />
+                                                <input class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this employee?')" type="submit" value="{{ __('Delete') }}" />
                                             </form>
                                         </div>
                                     </td>
@@ -52,7 +53,7 @@
 
                         {{ $employees->links() }}
                     @else
-                        <p>No employees</p>
+                        <p>{{ __('No employees') }}</p>
                     @endif
 
                 </div>

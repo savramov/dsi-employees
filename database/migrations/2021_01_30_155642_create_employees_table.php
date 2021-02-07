@@ -23,7 +23,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone_number');
             $table->unsignedBigInteger('department_id');
             $table->string('job_position');
-            $table->decimal('salary', 10, 2);
+            $table->integer('salary');
             $table->timestamps();
 
             $table->foreign('department_id')->references('id')->on('departments');

@@ -43,26 +43,26 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input align-bottom" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                                
-                                @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        <label class="form-check-label align-top" for="remember">
+                                            {{ __('Remember Me') }}
+                                        </label>
+                                    </div>
+                                    
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link align-text-top pull-right" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
-                                    
-                                @endif
+                                    @endif
+                                </div>
                             </div>
                         </div>
-
-                    
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>

@@ -2,14 +2,12 @@
 
 @section('content')
 <div class="container">
-
-
     <div class="card">
 
-        <div class="card-header">
-            <h4>{{ __('Edit Employee') }}</h4>
-        </div>
-
+        <h4 class="card-header d-flex justify-content-between align-items-center p-4">
+            {{ __('Edit Employee') }}
+            <a class="btn btn-link" href="{{ route('employees') }}">{{ __('Back to List') }}</a>
+        </h4>
 
         <div class="card-body">
 
@@ -131,8 +129,5 @@
         </div>
 
     </div>
-
-    
-
 </div>
 @endsection
